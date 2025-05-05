@@ -2,7 +2,7 @@ import Friend from "./Friend";
 
 export default function FriendList1({
   selectedFriend,
-  toogleSplitBillForm,
+  handleSelectedFriend,
   friends
 }) {
   return (
@@ -12,7 +12,7 @@ export default function FriendList1({
           friend={friend}
           key={friend.id}
           selectedFriend={selectedFriend}
-          toogleSplitBillForm={toogleSplitBillForm}
+          handleSelectedFriend={handleSelectedFriend}
           show
         />
       ))}

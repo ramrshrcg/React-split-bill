@@ -1,26 +1,42 @@
+import { useState } from "react";
 import Button from "../Button/button";
 
-export default function SplitBillForm() {
-
+export default function SplitBillForm({selectedFriend,setSelectedFriend,handleSplitBill }) {
+  const [bill, setBill] = useState('');
+  const [userExpense, setUserExpense] = useState('');
+  // const [friendExpense, setFriendExpense] = useState('');
+  const [whoisPaying, setWhoisPaying] = useState('user');
+  const paidByFriend= bill?bill- userExpense:''
+  function handleSubmitBillspliting(e){
+    e.preventDefault();
+    if(!bill || !userExpense){
+      alert('Please enter a bill and your expense');
+      return;
+    }
+    handleSplitBill(whoisPaying ==='user'?paidByFriend:-userExpense)
+    // setSelectedFriend(null)
+    
+  }
   return (
     
       <>
-        <form className="form-split-bill">
-        <h2>Split Bill with friend </h2>
+        <form className="form-split-bill" onSubmit={handleSubmitBillspliting}>
+        <h2>Split Bill with {selectedFriend.name} </h2>
 
           <label> Bill value</label>
-          <input type="text" id="name"  placeholder="Enter your name" />
+          <input type="text"  placeholder="Enter bill value"  value={bill} onChange={e=>setBill(Number(e.target.value))} />
 
           <label>Your Expense</label>
-          <input type="text" id="image" placeholder="Enter image URL"  />
+          <input type="text"  placeholder="Enter total" value={userExpense}  onChange={e=>setUserExpense(Number(e.target.value)>bill?userExpense:(e.target.value))}  />
 
-          <label> Saras Expense</label>
-          <input type="number" id="bill" disabled placeholder="Enter bill amount" />
+          <label> {selectedFriend.name} Expense</label>
+          <input type="text"  disabled={true}  
+          value={paidByFriend>0?paidByFriend:''}/>
 
           <label> Who is paying the bill?</label>
-          <select>
+          <select value={whoisPaying} onChange={e=>setWhoisPaying(e.target.value)}> 
             <option value= 'user'> you</option>
-            <option value ='friend '> friend name</option>
+            <option value ='friend '> {selectedFriend.name}</option>
 
           
            
