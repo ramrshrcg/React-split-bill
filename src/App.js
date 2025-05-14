@@ -76,7 +76,7 @@ function App() {
         </Button>
       </div>
       {selectedFriend && (
-        <SplitBillForm
+        <SplitBillForm key={selectedFriend.id}
           selectedFriend={selectedFriend}
           setSelectedFriend={setSelectedFriend}
           handleSelectedFriend={handleSelectedFriend}

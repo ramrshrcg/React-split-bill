@@ -1,7 +1,7 @@
 import { useState } from "react";
 import Button from "../Button/button";
 
-export default function SplitBillForm({selectedFriend,setSelectedFriend,handleSplitBill }) {
+export default function SplitBillForm({selectedFriend,handleSplitBill }) {
   const [bill, setBill] = useState('');
   const [userExpense, setUserExpense] = useState('');
   // const [friendExpense, setFriendExpense] = useState('');
@@ -23,7 +23,7 @@ export default function SplitBillForm({selectedFriend,setSelectedFriend,handleSp
         <form className="form-split-bill" onSubmit={handleSubmitBillspliting}>
         <h2>Split Bill with {selectedFriend.name} </h2>
 
-          <label> Bill value</label>
+          <label>Bill value</label>
           <input type="text"  placeholder="Enter bill value"  value={bill} onChange={e=>setBill(Number(e.target.value))} />
 
           <label>Your Expense</label>
